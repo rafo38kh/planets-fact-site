@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 
@@ -26,9 +27,11 @@ export default function Nav() {
       </button>
 
       {isNavOpen && (
-        <ul className="absolute">
+        <ul className="">
           {planets.map((planet) => (
-            <li key={planet}>{planet}</li>
+            <li key={planet}>
+              {<Link href={`/planet/${planet}`}>{planet}</Link>}
+            </li>
           ))}
         </ul>
       )}
