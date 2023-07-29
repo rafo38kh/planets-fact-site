@@ -2,21 +2,43 @@ import Image from "next/image";
 import { getPlanet } from "../../../lib/getData";
 
 export default async function Page({ params }) {
-  // console.log(planets[0].name);
-
   const planets = await getPlanet();
-  const currentPlanet = planets.filter(
-    (planet) => planet.name.toLowerCase() === params.slug
-  );
+  const currentPlanet = planets
+    .filter((planet) => planet.name.toLowerCase() === params.slug)
+    ?.at(0);
 
   console.log(currentPlanet);
 
   return (
     <div>
       <div>
-        <Image src="/assets/planet-mercury.svg" width={200} height={200} />
+        <Image
+          src={currentPlanet.images.planet.slice(1)}
+          width={200}
+          height={200}
+          alt={currentPlanet.name}
+        />
+        <div>
+          <span>{currentPlanet.name}</span>
+          <p>{currentPlanet.overview.content}</p>
+          <p>source{currentPlanet.overview.source}</p>
+        </div>
       </div>
-      {planets?.map((el) => el.name)}
+      {/* {planets?.map((el) => el.name)} */}
+      <div>
+        <div>
+          <span>ROTATION TIME</span> <span>{currentPlanet.rotation}</span>
+        </div>
+        <div>
+          <span>REVOLUTION TIME</span> <span>{currentPlanet.revolution}</span>
+        </div>
+        <div>
+          <span>radius</span> <span>{currentPlanet.radius}</span>
+        </div>
+        <div>
+          <span>AVERAGE TEMP.</span> <span>{currentPlanet.temperature}</span>
+        </div>
+      </div>
     </div>
   );
 }
