@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import TabButtons from "./TabButtons";
 
 export default function Planet({ currentPlanet }) {
   const tabs = ["Overview", "Structure", "Surface"];
@@ -13,7 +14,7 @@ export default function Planet({ currentPlanet }) {
     if (tabName === "Overview") {
       return (
         <Image
-          src={currentPlanet.images.planet.slice(1)}
+          src={currentPlanet.images.planet}
           width={200}
           height={200}
           alt={currentPlanet.name}
@@ -22,7 +23,7 @@ export default function Planet({ currentPlanet }) {
     } else if (tabName === "Structure") {
       return (
         <Image
-          src={currentPlanet.images.internal.slice(1)}
+          src={currentPlanet.images.internal}
           width={200}
           height={200}
           alt={currentPlanet.name}
@@ -32,13 +33,13 @@ export default function Planet({ currentPlanet }) {
       return (
         <>
           <Image
-            src={currentPlanet.images.planet.slice(1)}
+            src={currentPlanet.images.planet}
             width={200}
             height={200}
             alt={currentPlanet.name}
           />
           <Image
-            src={currentPlanet.images.geology.slice(1)}
+            src={currentPlanet.images.geology}
             width={120}
             height={120}
             alt={currentPlanet.name}
@@ -53,46 +54,51 @@ export default function Planet({ currentPlanet }) {
 
   return (
     <div>
-      <ul className="flex flex-row justify-between items-center px-10">
-        {tabs.map((tab) => (
-          <li key={tab}>
-            <button
-              className={`focus:border-b-4 border-[${currentPlanet.color}]`}
-              onClick={() => setTabName(tab)}
-              type="button"
-            >
-              {tab}
-            </button>
-          </li>
-        ))}
+      <ul className="flex flex-row justify-between items-center px-10 md:hidden border-y border-border">
+        <TabButtons
+          tabs={tabs}
+          tabName={tabName}
+          setTabName={setTabName}
+          color={currentPlanet.color}
+        />
       </ul>
 
       <div>
-        <div className="relative flex items-center justify-center ">
-          {getImage()}
-        </div>
         <div>
-          <span>{currentPlanet.name}</span>
-          <p>
-            {tabName === "Overview"
-              ? currentPlanet.overview.content
-              : tabName === "Structure"
-              ? currentPlanet.structure.content
-              : currentPlanet.geology.content}
-          </p>
-          <p>
-            source :
-            {tabName === "Overview" ? (
-              <Link href={currentPlanet.overview.source}>Wikipedia</Link>
-            ) : tabName === "Structure" ? (
-              <Link href={currentPlanet.structure.source}>Wikipedia</Link>
-            ) : (
-              <Link href={currentPlanet.geology.source}>Wikipedia</Link>
-            )}
-          </p>
+          <div className="relative flex items-center justify-center ">
+            {getImage()}
+          </div>
+          <div>
+            <span>{currentPlanet.name}</span>
+            <p>
+              {tabName === "Overview"
+                ? currentPlanet.overview.content
+                : tabName === "Structure"
+                ? currentPlanet.structure.content
+                : currentPlanet.geology.content}
+            </p>
+            <p>
+              source :
+              {tabName === "Overview" ? (
+                <Link href={currentPlanet.overview.source}>Wikipedia</Link>
+              ) : tabName === "Structure" ? (
+                <Link href={currentPlanet.structure.source}>Wikipedia</Link>
+              ) : (
+                <Link href={currentPlanet.geology.source}>Wikipedia</Link>
+              )}
+            </p>
+          </div>
         </div>
+
+        <ul className="hidden md:flex flex-row justify-between items-center px-10">
+          <TabButtons
+            tabs={tabs}
+            tabName={tabName}
+            setTabName={setTabName}
+            color={currentPlanet.color}
+          />
+        </ul>
       </div>
-      {/* {planets?.map((el) => el.name)} */}
       <div>
         <div>
           <span>ROTATION TIME</span> <span>{currentPlanet.rotation}</span>

@@ -21,16 +21,16 @@ export default function Nav() {
   ];
 
   return (
-    <div className="flex items-center justify-between w-full px-8 py-4 relative">
-      <span className="uppercase">the planets</span>
+    <div className="flex items-center justify-between w-full px-6 py-4 relative">
+      <span className="uppercase text-[1.75rem]">the planets</span>
       <button onClick={() => setIsNavOpen((prevState) => !prevState)}>
-        <Image alt="burger" src={burger} height={30} width={30} />
+        <Image alt="burger" src={burger} height={17} width={24} />
       </button>
 
       {isNavOpen && (
-        <ul className="">
+        <ul className="absolute w-full z-40 inset-0 h-[calc(100vh-68px)] bg-slate-100 mt-16 overflow-hidden">
           {planets.map((planet) => (
-            <li key={planet}>
+            <li key={planet} onClick={() => setIsNavOpen(false)}>
               {<Link href={`/planet/${planet.toLowerCase()}`}>{planet}</Link>}
             </li>
           ))}
