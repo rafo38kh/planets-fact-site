@@ -1,8 +1,19 @@
-import Nav from "@/components/Nav";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import { Antonio, League_Spartan } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+import Nav from "@/components/Nav";
+
+import "./globals.css";
+
+const antonio = Antonio({
+  subsets: ["latin"],
+  weight: ["500", "700"],
+  variable: "--font-antonio",
+});
+const spartan = League_Spartan({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-spartan",
+});
 
 export const metadata = {
   title: "Create Next App",
@@ -12,7 +23,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-background text-white`}>
+      <body
+        className={`${antonio.variable} ${spartan.variable} font-spartan bg-background text-white bg-background-stars bg-cover h-screen bg-repeat-y`}
+      >
         <Nav />
         {children}
       </body>
