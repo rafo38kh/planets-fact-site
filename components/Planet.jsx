@@ -27,8 +27,8 @@ export default function Planet({ currentPlanet }) {
       return (
         <Image
           src={currentPlanet.images.planet}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
           alt={currentPlanet.name}
         />
       );
@@ -36,8 +36,8 @@ export default function Planet({ currentPlanet }) {
       return (
         <Image
           src={currentPlanet.images.internal}
-          width={200}
-          height={200}
+          width={300}
+          height={300}
           alt={currentPlanet.name}
         />
       );
@@ -46,14 +46,14 @@ export default function Planet({ currentPlanet }) {
         <>
           <Image
             src={currentPlanet.images.planet}
-            width={200}
-            height={200}
+            width={300}
+            height={300}
             alt={currentPlanet.name}
           />
           <Image
             src={currentPlanet.images.geology}
-            width={120}
-            height={120}
+            width={150}
+            height={150}
             alt={currentPlanet.name}
             className="absolute -bottom-16 "
           />
@@ -112,7 +112,7 @@ export default function Planet({ currentPlanet }) {
           />
         </ul>
       </div>
-      <div className="px-6 grid gap-4 mt-7 mb-10 md:grid-flow-col lg:p-0">
+      <div className="px-6 grid gap-10 mt-7 mb-10 md:grid-flow-col lg:p-0">
         <InfoBox title="Rotation Time" info={currentPlanet.rotation} />
         <InfoBox title="Revolution Time" info={currentPlanet.revolution} />
         <InfoBox title="Radius" info={currentPlanet.radius} />
