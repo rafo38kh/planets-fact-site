@@ -2,11 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import chevron from "../public/assets/icon-chevron.svg";
 import burger from "../public/assets/icon-hamburger.svg";
 
 export default function Nav() {
+  const pathname = usePathname().split("/").at(-1);
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const planets = [
@@ -20,15 +22,22 @@ export default function Nav() {
     { name: "Neptune", color: "#497EFA" },
   ];
   return (
-    <div className="  flex md:flex-col lg:flex-row items-center justify-between w-full px-6 py-4  md:border-b pb-7">
-      <span className="uppercase text-[1.75rem] md:mb-10 lg:m-0">
+    <div className="  flex w-full items-center justify-between px-6 py-4 pb-7 md:flex-col  md:border-b lg:flex-row">
+      <span className="text-[1.75rem] uppercase md:mb-10 lg:m-0">
         the planets
       </span>
 
-      <ul className="hidden md:flex md:justify-between lg:flex lg:justify-between w-full lg:w-1/2">
+      <ul className="hidden w-full md:flex md:justify-between lg:flex lg:w-1/2 lg:justify-between">
         {planets.map((planet) => (
           <li
-            className="font-spartan font-bold text-base uppercase md:py-0 "
+            style={{
+              borderTop: `2px solid ${
+                pathname === planet.name.toLowerCase()
+                  ? planet.color
+                  : "transparent"
+              }`,
+            }}
+            className="rounded-sm font-spartan text-base font-bold uppercase md:py-0"
             key={planet.name}
           >
             {
@@ -53,7 +62,7 @@ export default function Nav() {
       </button>
 
       {isNavOpen && (
-        <ul className="md:hidden absolute w-full z-40 inset-0 h-[calc(100vh-68px)] bg-background mt-16 overflow-hidden px-6">
+        <ul className="absolute inset-0 z-40 mt-16 h-[calc(100vh-68px)] w-full overflow-hidden bg-background px-6 md:hidden">
           {planets.map((planet) => (
             <li
               key={planet.name}
@@ -62,11 +71,11 @@ export default function Nav() {
               <div className="flex items-center justify-center gap-6">
                 <div
                   style={{ background: planet.color }}
-                  className={`rounded-full h-6 w-6`}
+                  className={`h-6 w-6 rounded-full`}
                 />
 
                 <div
-                  className="font-spartan font-bold text-xl uppercase py-5 "
+                  className="py-5 font-spartan text-xl font-bold uppercase "
                   onClick={() => setIsNavOpen(false)}
                 >
                   {

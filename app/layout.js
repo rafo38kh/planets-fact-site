@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${antonio.variable} ${spartan.variable} font-spartan bg-background text-white bg-background-stars bg-cover h-screen bg-repeat-y`}
+        className={`${antonio.variable} ${spartan.variable} h-screen bg-background bg-background-stars bg-cover bg-repeat-y font-spartan text-white`}
       >
         <Nav />
         {children}

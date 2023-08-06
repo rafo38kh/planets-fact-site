@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-// import Link from "next/link";
 import Image from "next/image";
 
 import InfoBox from "./InfoBox";
@@ -30,6 +29,7 @@ export default function Planet({ currentPlanet }) {
           width={300}
           height={300}
           alt={currentPlanet.name}
+          className="w-2/3"
         />
       );
     } else if (tabName === "Structure") {
@@ -39,6 +39,7 @@ export default function Planet({ currentPlanet }) {
           width={300}
           height={300}
           alt={currentPlanet.name}
+          className="w-2/3"
         />
       );
     } else {
@@ -49,6 +50,7 @@ export default function Planet({ currentPlanet }) {
             width={300}
             height={300}
             alt={currentPlanet.name}
+            className="w-2/3"
           />
           <Image
             src={currentPlanet.images.geology}
@@ -64,7 +66,7 @@ export default function Planet({ currentPlanet }) {
 
   return (
     <div className="md:px-6 lg:px-40">
-      <ul className="flex flex-row justify-between items-center uppercase md:hidden border-y border-border px-6 pt-5">
+      <ul className="flex flex-row items-center justify-between border-y border-border px-6 pt-5 uppercase md:hidden">
         <TabButtons
           tabs={tabs}
           tabName={tabName}
@@ -73,15 +75,15 @@ export default function Planet({ currentPlanet }) {
         />
       </ul>
 
-      <div className="md:grid md:grid-cols-2 md:grid-rows-2 md:items-center md:justify-center md:gap-x-16 file:lg:gap-0 lg:py-20 ">
-        <div className="relative flex items-center justify-center col-span-2 my-24 lg:col-span-1  lg:row-span-2 lg:m-0">
+      <div className="md:grid md:grid-cols-2 md:items-center md:justify-center md:gap-x-16 lg:gap-0 lg:py-20">
+        <div className="relative col-span-2 my-24 flex items-center justify-center p-6 lg:col-span-1 lg:row-span-2 lg:m-0">
           {getImage()}
         </div>
-        <div className="text-center px-6 md:p-0 md:text-left lg:max-w-xs ">
-          <span className="text-4xl uppercase font-antonio lg:text-[80px]">
+        <div className="px-6 text-center md:p-0 md:text-left lg:max-w-xs lg:justify-self-end">
+          <span className="font-antonio text-4xl uppercase lg:text-[80px]">
             {currentPlanet.name}
           </span>
-          <p className="font-spartan text-xs  lg:text-sm leading-5 mt-4 mb-8">
+          <p className="mb-8 mt-4  font-spartan text-xs leading-5 lg:text-sm">
             {tabName === "Overview"
               ? currentPlanet.overview.content
               : tabName === "Structure"
@@ -103,7 +105,7 @@ export default function Planet({ currentPlanet }) {
           </div>
         </div>
 
-        <ul className="hidden md:flex flex-row justify-between items-center px-10 md:flex-col md:p-0 lg:max-w-xs">
+        <ul className="hidden w-full flex-row items-center justify-between px-10 md:flex md:flex-col md:p-0 lg:max-w-xs lg:justify-self-end">
           <TabButtons
             tabs={tabs}
             tabName={tabName}
@@ -112,7 +114,7 @@ export default function Planet({ currentPlanet }) {
           />
         </ul>
       </div>
-      <div className="px-6 grid gap-10 mt-7 mb-10 md:grid-flow-col lg:p-0">
+      <div className="mb-10 mt-7 grid gap-4 px-6 md:grid-cols-4 md:p-0">
         <InfoBox title="Rotation Time" info={currentPlanet.rotation} />
         <InfoBox title="Revolution Time" info={currentPlanet.revolution} />
         <InfoBox title="Radius" info={currentPlanet.radius} />
