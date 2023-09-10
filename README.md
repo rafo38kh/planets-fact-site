@@ -22,7 +22,7 @@ This is a solution to the [Planets Fact Site Challenge on Frontend Mentor](https
 
 ### Links
 
-- Solution URL: []()
+- Solution URL: [https://www.frontendmentor.io/challenges/planets-fact-site-gazqN8w_f](https://www.frontendmentor.io/challenges/planets-fact-site-gazqN8w_f)
 - Live Site URL: [http://localhost:3000/planet/mercury](http://localhost:3000/planet/mercury)
 
 ## My process
